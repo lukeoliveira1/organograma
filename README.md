@@ -1,5 +1,5 @@
 # organograma
 
-A system for organizing teams.
+A front-end for organizing teams.
 
 Project to study React.
