@@ -1,6 +1,10 @@
 import './Footer.css'
 
-export const Footer = () => {
+interface FooterProps {
+  gitUsername: string;
+
+}
+export const Footer = ({ gitUsername } : FooterProps) => {
   return(
     <footer className='footer'>
       <section>
@@ -8,7 +12,7 @@ export const Footer = () => {
       </section>
       <section>
         <a href="https://github.com/lukeoliveira1">
-          @lukeoliveira1
+          {gitUsername}
           <img src="imgs/github.png" alt="logo do github"/>
         </a>
       </section>

@@ -1,6 +1,13 @@
+import { ICollaborator } from '../../types/ICollaborator'
+
 import './Collaborator.css'
 
-export const Collaborator = ({ image, name, role, backgroundColor }) => {
+interface CollaboratorProps extends ICollaborator {
+  backgroundColor: string;
+}
+
+export const Collaborator = ({ image, name, role, backgroundColor } : CollaboratorProps) => {
+
   return(
     <div className='collaborator'>
 

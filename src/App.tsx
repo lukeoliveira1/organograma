@@ -3,6 +3,7 @@ import { Banner } from './components/Banner';
 import { MemberForm } from './components/MemberForm';
 import { Team } from './components/Team';
 import { Footer } from './components/Footer';
+import { ICollaborator } from './types/ICollaborator';
 
 function App() {
 
@@ -44,15 +45,15 @@ function App() {
     }
   ]
 
-  const [collaborators, setCollaborators] = useState([]);
+  const [collaborators, setCollaborators] = useState<ICollaborator[]>([]);
 
-  const handleRegisteredCollaborators = (newCollaborator) => {
+  const handleRegisteredCollaborators = (newCollaborator : ICollaborator) => {
     setCollaborators([...collaborators, newCollaborator])
   }
 
   return (
     <div className="App">
-      <Banner />
+      <Banner urlImg='/imgs/banner.png'/>
       <MemberForm 
         teams={teams.map(team => team.name)}
         registeredCollaborator={collaborators => handleRegisteredCollaborators(collaborators)}
@@ -66,7 +67,7 @@ function App() {
                 collaborators={collaborators.filter(collaborator => collaborator.team === team.name)}
               />
       })}
-      <Footer />
+      <Footer gitUsername="@lukeoliveira1"/>
     </div>
   );
 }

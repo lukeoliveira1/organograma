@@ -1,19 +1,25 @@
 import { useState } from 'react'
 
-import { FloatList } from '../FloatList'
+import { FormSelect } from '../FormSelect'
 import { FormButton } from '../FormButton'
 import { TextInput } from '../TextInput'
 
 import './MemberForm.css'
+import { ICollaborator } from '../../types/ICollaborator'
 
-export const MemberForm = (props) => {
+interface MemberFormProps {
+  registeredCollaborator: (collaborator : ICollaborator) => void;
+  teams: string[];
+}
+
+export const MemberForm = (props : MemberFormProps) => {
 
     const [name, setName] = useState('');
     const [role, setRole] = useState('');
     const [image, setImage] = useState('');
     const [team, setTeam] = useState('');
 
-    const handleForm = (event) => {
+    const handleForm = (event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         props.registeredCollaborator({
             name, 
@@ -29,7 +35,7 @@ export const MemberForm = (props) => {
 
     return(
         <section className="formulario">
-            <form onSubmit={handleForm}>
+            <form onSubmit={event => handleForm(event)}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
                 <TextInput 
                   required={true} 
@@ -39,19 +45,19 @@ export const MemberForm = (props) => {
                   changeInputValue={value => setName(value)}
                 />
                 <TextInput 
+                  required={true} 
                   label="Cargo" 
                   placeholder="Digite seu cargo"
                   value={role}
                   changeInputValue={value => setRole(value)}
                 />
                 <TextInput 
-                  required={true} 
                   label="Imagem" 
                   placeholder="Digite o endereço da imagem"
                   value={image}
                   changeInputValue={value => setImage(value)}
                 />
-                <FloatList 
+                <FormSelect 
                   required={true} 
                   label="Time" 
                   itens={props.teams}
